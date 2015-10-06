@@ -15,5 +15,6 @@ setup(
     keywords=__keywords__,
     long_description=open('README.rst').read(),
     packages=find_packages(),
+    package_data={'': ['tabela_fipe.db']},
     include_package_data=True,
 )

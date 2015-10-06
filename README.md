@@ -39,7 +39,7 @@ Using sxtools
         )
 
 
-development
+Development
 --------
 
 * Source hosted at `GitHub <https://github.com/sxslex/TabelaFipe>`_
@@ -49,9 +49,7 @@ Pull requests are very welcomed! Make sure your patches are well tested.
 Running the tests
 --------
 
-All you need is:
-
-::
+All you need is: ::
 
     $ source alias.sh
     $ nt TabelaFipe tests/*.py

@@ -15,8 +15,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-__version__ = '0.0.1'
-__description__ = 'TabelaFipe - Vehicle information: Manufacturer, Model, ' + \
+__version__ = '0.0.1.2015.10'
+__description__ = 'TabelaFipe (october / 2015) - ' + \
+    'Vehicle information: Manufacturer, Model, ' + \
     'Vehicle, versions and prices.'
 __keywords__ = 'simple access library of data from the Table Fipe' + \
     'Vehicle information, Manufacturer, Model, Vehicle, versions and prices'

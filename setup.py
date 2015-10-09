@@ -7,7 +7,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 setup(
-    name='TableFipe',
+    name='tabela_fipe',
     author=__author__,
     author_email=__author_email__,
     version=__version__,

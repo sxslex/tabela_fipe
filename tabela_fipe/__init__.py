@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 __version__ = '0.0.1.2015.10'
-__description__ = 'TabelaFipe (october / 2015) - ' + \
+__description__ = 'tabela_fipe (october / 2015) - ' + \
     'Vehicle information: Manufacturer, Model, ' + \
     'Vehicle, versions and prices.'
 __keywords__ = 'simple access library of data from the Table Fipe' + \
@@ -24,4 +24,4 @@ __keywords__ = 'simple access library of data from the Table Fipe' + \
 __author__ = 'Alexandre Villela (SleX)'
 __author_email__ = 'sx.slex@gmail.com'
 
-from tabela_fipe import TabelaFipe
+from tabela_fipe import tabela_fipe

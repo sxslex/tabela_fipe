@@ -1,13 +1,13 @@
 ======
-TabelaFipe
+tabela_fipe
 ======
 
 .. image:: https://badges.gitter.im/Join%20Chat.svg
-   :alt: Join the chat at https://gitter.im/sxslex/TabelaFipe
-   :target: https://gitter.im/sxslex/TabelaFipe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+   :alt: Join the chat at https://gitter.im/sxslex/tabela_fipe
+   :target: https://gitter.im/sxslex/tabela_fipe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 
-.. image:: https://travis-ci.org/sxslex/TabelaFipe.svg?branch=master
-    :target: https://travis-ci.org/sxslex/TabelaFipe
+.. image:: https://travis-ci.org/sxslex/tabela_fipe.svg?branch=master
+    :target: https://travis-ci.org/sxslex/tabela_fipe
 
 Simple access library of data from the "Table Fipe".
 
@@ -18,7 +18,7 @@ Installing
 
 For install sxtools, run on terminal: ::
 
-    $ [sudo] cd TabelaFipe
+    $ [sudo] cd tabela_fipe
     $ [sudo] python setup.py install
 
 Using sxtools
@@ -27,9 +27,9 @@ Using sxtools
 .. code-block:: python
 
 
-    from TabelaFipe import TabelaFipe
+    from tabela_fipe import tabela_fipe
 
-    tab_fipe = TabelaFipe()
+    tab_fipe = tabela_fipe()
 
     info = tab_fipe.get_by_codefipe('006008-9')
 
@@ -49,7 +49,7 @@ Using sxtools
 Development
 --------
 
-* Source hosted at `GitHub <https://github.com/sxslex/TabelaFipe>`_
+* Source hosted at `GitHub <https://github.com/sxslex/tabela_fipe>`_
 
 Pull requests are very welcomed! Make sure your patches are well tested.
 
@@ -59,6 +59,6 @@ Running the tests
 All you need is: ::
 
     $ source alias.sh
-    $ nt TabelaFipe tests/*.py
+    $ nt tabela_fipe tests/*.py
 
 

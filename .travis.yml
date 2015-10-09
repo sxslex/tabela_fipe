@@ -3,6 +3,9 @@ python:
   - "2.7"
 install:
   - pip install -r requirements.txt
+  - cd TabelaFipe
+  - python setup.py install
 script:
-  - nosetests -dsv --with-yanc --with-coverage --cover-package . tests/test_*.py
+  - source alias.sh
+  - nt TabelaFipe tests/test_*.py
 

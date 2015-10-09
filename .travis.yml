@@ -5,5 +5,4 @@ install:
   - pip install -r requirements.txt
 script:
   - source alias.sh
-  - nt TabelaFipe tests/test_*.py
-
+  - nosetests -dsv --with-yanc --with-coverage --cover-package TabelaFipe tests/test_*.py

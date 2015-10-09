@@ -27,9 +27,9 @@ Using sxtools
 .. code-block:: python
 
 
-    from tabela_fipe import tabela_fipe
+    from tabela_fipe import TabelaFipe
 
-    tab_fipe = tabela_fipe()
+    tab_fipe = TabelaFipe()
 
     info = tab_fipe.get_by_codefipe('006008-9')
 

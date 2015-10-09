@@ -24,4 +24,4 @@ __keywords__ = 'simple access library of data from the Table Fipe' + \
 __author__ = 'Alexandre Villela (SleX)'
 __author_email__ = 'sx.slex@gmail.com'
 
-from tabela_fipe import tabela_fipe
+from tabela_fipe import TabelaFipe

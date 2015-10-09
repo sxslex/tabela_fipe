@@ -17,7 +17,7 @@
 #
 #    by sx.slex@gmail.com
 
-from TabelaFipe import TabelaFipe
+from tabela_fipe import TabelaFipe
 import unittest
 # import pprint
 

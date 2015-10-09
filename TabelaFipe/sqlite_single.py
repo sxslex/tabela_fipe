@@ -19,6 +19,7 @@
 #   sx.slex@gmail.com
 # Thanks:
 #   @denisfrm
+#   @cassiobotaro
 #
 import contextlib
 import sqlite3

@@ -2,6 +2,13 @@
 TabelaFipe
 ======
 
+.. image:: https://badges.gitter.im/Join%20Chat.svg
+   :alt: Join the chat at https://gitter.im/sxslex/TabelaFipe
+   :target: https://gitter.im/sxslex/TabelaFipe?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
+.. image:: https://travis-ci.org/sxslex/TabelaFipe.svg?branch=master
+    :target: https://travis-ci.org/sxslex/TabelaFipe
+
 Simple access library of data from the "Table Fipe".
 
 Vehicle information: Manufacturer, Model, Vehicle, versions and prices.

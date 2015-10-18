@@ -28,10 +28,10 @@ class TestTabelaFipe(unittest.TestCase):
         tb = TabelaFipe()
         resp = tb.get_by_codefipe('006008-9')
         # pprint.pprint(resp)
-        self.assertIsInstance(resp, dict)
+        self.assertTrue(isinstance(resp, dict))
 
     def test_02_get_by_codefipe_not_exists(self):
         tb = TabelaFipe()
         resp = tb.get_by_codefipe('111111-1')
         # pprint.pprint(resp)
-        self.assertIsNone(resp)
+        self.assertTrue(resp is None)

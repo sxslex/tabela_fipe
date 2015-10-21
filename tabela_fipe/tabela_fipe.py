@@ -40,11 +40,12 @@ class TabelaFipe(object):
                     mod.mod_codigofipe,
                     tiv.tiv_text,
                     mar.mar_text,
+                    mod.mod_modbase,
                     mod.mod_text
                 from mod_modelo mod
                 left join mar_marca mar on mod.mar_cod=mar.mar_cod
                 left join tiv_tipoveiculo tiv on mar.tiv_cod=tiv.tiv_cod
-                where trim(mod.mod_codigofipe) = ?
+                where mod.mod_codigofipe = ?
             ''',
             params=[codefipe]
         )
@@ -74,3 +75,37 @@ class TabelaFipe(object):
             ) for ver in resp_ano
         ]
         return dresp
+
+    def get_marca(self, mar_cod=None, tiv_cod=None, limit=None, offset=None):
+        sql = '''
+            SELECT
+                mar_cod,
+                tiv_cod,
+                mar_text
+            FROM mar_marca
+        '''
+        where = []
+        params = []
+        if mar_cod:
+            where.append('mar_cod=?')
+            params.append(mar_cod)
+        if tiv_cod:
+            where.append('tiv_cod=?')
+            params.append(tiv_cod)
+        if where:
+            sql += 'WHERE ' + (' AND '.join(where))
+        if limit is not None:
+            sql += '\nLIMIT ' + str(int(limit))
+            if offset is not None:
+                sql += '\nOFFSET ' + str(int(offset))
+        resp = self.db.query(
+            sql=sql,
+            params=params
+        )
+        return [
+            dict(
+                mar_cod=ver[0],
+                tiv_cod=ver[1],
+                mar_text=ver[2]
+            ) for ver in resp
+        ]

@@ -19,7 +19,7 @@
 
 from tabela_fipe import TabelaFipe
 import unittest
-# import pprint
+import pprint
 
 
 class TestTabelaFipe(unittest.TestCase):
@@ -35,3 +35,25 @@ class TestTabelaFipe(unittest.TestCase):
         resp = tb.get_by_codefipe('111111-1')
         # pprint.pprint(resp)
         self.assertTrue(resp is None)
+
+    def test_03_get_marca(self):
+        tb = TabelaFipe()
+        resp = tb.get_marca(limit=5, offset=0)
+        self.assertTrue(isinstance(resp, list))
+        self.assertTrue(len(resp) == 5)
+        # pprint.pprint(resp)
+
+    def test_04_get_marca(self):
+        tb = TabelaFipe()
+        resp = tb.get_marca(mar_cod=1, limit=10)
+        self.assertTrue(isinstance(resp, list))
+        self.assertTrue(len(resp) == 1)
+        self.assertTrue(resp[0]['mar_text'] == 'ACURA')
+
+    def test_05_get_marca(self):
+        tb = TabelaFipe()
+        resp = tb.get_marca(tiv_cod=2, limit=2)
+        self.assertTrue(isinstance(resp, list))
+        self.assertTrue(len(resp) == 2)
+        self.assertTrue(resp[0]['tiv_cod'] == 2)
+        # pprint.pprint(resp)

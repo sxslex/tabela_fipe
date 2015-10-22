@@ -19,38 +19,32 @@
 
 from tabela_fipe import TabelaFipe
 import unittest
-import pprint
+# import pprint
 
 
 class TestTabelaFipe(unittest.TestCase):
 
-    def test_01_get_by_codefipe(self):
+    def test_01_get_tipoveiculo(self):
         tb = TabelaFipe()
-        resp = tb.get_by_codefipe('006008-9')
+        resp = tb.get_tipoveiculo()
+        self.assertTrue(isinstance(resp, list))
         # pprint.pprint(resp)
-        self.assertTrue(isinstance(resp, dict))
 
-    def test_02_get_by_codefipe_not_exists(self):
-        tb = TabelaFipe()
-        resp = tb.get_by_codefipe('111111-1')
-        # pprint.pprint(resp)
-        self.assertTrue(resp is None)
-
-    def test_03_get_marca(self):
+    def test_02_get_marca(self):
         tb = TabelaFipe()
         resp = tb.get_marca(limit=5, offset=0)
         self.assertTrue(isinstance(resp, list))
         self.assertTrue(len(resp) == 5)
         # pprint.pprint(resp)
 
-    def test_04_get_marca(self):
+    def test_03_get_marca(self):
         tb = TabelaFipe()
         resp = tb.get_marca(mar_cod=1, limit=10)
         self.assertTrue(isinstance(resp, list))
         self.assertTrue(len(resp) == 1)
         self.assertTrue(resp[0]['mar_text'] == 'ACURA')
 
-    def test_05_get_marca(self):
+    def test_04_get_marca(self):
         tb = TabelaFipe()
         resp = tb.get_marca(tiv_cod=2, limit=2)
         self.assertTrue(isinstance(resp, list))
@@ -58,8 +52,25 @@ class TestTabelaFipe(unittest.TestCase):
         self.assertTrue(resp[0]['tiv_cod'] == 2)
         # pprint.pprint(resp)
 
-    def test_06_get_tipoveiculo(self):
+    def test_05_get_modelo(self):
         tb = TabelaFipe()
-        resp = tb.get_tipoveiculo()
+        resp = tb.get_modelo(mod_codigofipe='006008-9')
         self.assertTrue(isinstance(resp, list))
+        self.assertTrue(len(resp) == 1)
+        # pprint.pprint(resp)
+
+    def test_06_get_modelo(self):
+        tb = TabelaFipe()
+        resp = tb.get_modelo(mod_codigofipe='111111-1')
+        self.assertTrue(isinstance(resp, list))
+        self.assertTrue(len(resp) == 0)
+        # pprint.pprint(resp)
+
+    def test_07_get_modelo(self):
+        tb = TabelaFipe()
+        resp = tb.get_modelo(
+            tiv_cod=1, mod_cod=9, mar_cod=3, limit=5, offset=0
+        )
+        self.assertTrue(isinstance(resp, list))
+        self.assertTrue(len(resp) == 1)
         # pprint.pprint(resp)

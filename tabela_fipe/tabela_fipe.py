@@ -76,6 +76,24 @@ class TabelaFipe(object):
         ]
         return dresp
 
+    def get_tipoveiculo(self):
+        sql = '''
+            SELECT
+                tiv_cod,
+                tiv_text
+            FROM tiv_tipoveiculo
+        '''
+        resp = self.db.query(
+            sql=sql,
+            params=[]
+        )
+        return [
+            dict(
+                tiv_cod=item[0],
+                tiv_text=item[1]
+            ) for item in resp
+        ]
+
     def get_marca(self, mar_cod=None, tiv_cod=None, limit=None, offset=None):
         sql = '''
             SELECT
@@ -104,8 +122,8 @@ class TabelaFipe(object):
         )
         return [
             dict(
-                mar_cod=ver[0],
-                tiv_cod=ver[1],
-                mar_text=ver[2]
-            ) for ver in resp
+                mar_cod=item[0],
+                tiv_cod=item[1],
+                mar_text=item[2]
+            ) for item in resp
         ]

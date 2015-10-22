@@ -57,3 +57,9 @@ class TestTabelaFipe(unittest.TestCase):
         self.assertTrue(len(resp) == 2)
         self.assertTrue(resp[0]['tiv_cod'] == 2)
         # pprint.pprint(resp)
+
+    def test_06_get_tipoveiculo(self):
+        tb = TabelaFipe()
+        resp = tb.get_tipoveiculo()
+        self.assertTrue(isinstance(resp, list))
+        # pprint.pprint(resp)

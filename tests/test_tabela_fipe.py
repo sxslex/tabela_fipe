@@ -19,7 +19,7 @@
 
 from tabela_fipe import TabelaFipe
 import unittest
-# import pprint
+import pprint
 
 
 class TestTabelaFipe(unittest.TestCase):
@@ -73,4 +73,4 @@ class TestTabelaFipe(unittest.TestCase):
         )
         self.assertTrue(isinstance(resp, list))
         self.assertTrue(len(resp) == 1)
-        # pprint.pprint(resp)
+        pprint.pprint(resp)

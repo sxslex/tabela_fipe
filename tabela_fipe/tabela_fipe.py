@@ -85,8 +85,13 @@ class TabelaFipe(object):
         ]
 
     def get_modelo(
-        self, tiv_cod=None, mod_cod=None, mar_cod=None, mod_codigofipe=None,
-        limit=None, offset=None
+        self,
+        tiv_cod=None,
+        mod_cod=None,
+        mar_cod=None,
+        mod_codigofipe=None,
+        limit=None,
+        offset=None
     ):
         sql = '''
             select
@@ -97,6 +102,7 @@ class TabelaFipe(object):
                 tiv.tiv_text,
                 mar.mar_text,
                 mod.mod_modbase,
+                mod.mod_categoria,
                 mod.mod_text
             from mod_modelo mod
             left join mar_marca mar on mod.mar_cod=mar.mar_cod
@@ -135,7 +141,8 @@ class TabelaFipe(object):
                 tiv_text=item[4],
                 mar_text=item[5],
                 mod_modbase=item[6],
-                mod_text=item[7],
+                mod_categoria=item[7],
+                mod_text=item[8],
                 versoes=[],
             ) for item in resp
         ]

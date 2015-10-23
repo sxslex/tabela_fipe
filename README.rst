@@ -31,10 +31,11 @@ Using sxtools
 
     tab_fipe = TabelaFipe()
 
-    info = tab_fipe.get_by_codefipe('006008-9')
+    info = tab_fipe.get_modelo(mod_codigofipe='006008-9')
 
-    print('Marca: ' + info['marca'])
-    print('Modelo: ' + info['modelo'])
+    print('Marca: ' + info['mar_text'])
+    print('Modelo: ' + info['mod_text'])
+    print('Categoria: ' + info['mod_categoria'])
     print('Versoes: ')
     for ver in info['versoes']:
         print(
@@ -58,7 +59,6 @@ Running the tests
 
 All you need is: ::
 
-    $ source alias.sh
-    $ nt tabela_fipe tests/*.py
+    $ nosetests -dsv --with-yanc --with-coverage --cover-package tabela_fipe tests/*.py
 
 

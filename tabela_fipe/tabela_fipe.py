@@ -90,6 +90,7 @@ class TabelaFipe(object):
         mod_cod=None,
         mar_cod=None,
         mod_codigofipe=None,
+        mod_text=None,
         limit=None,
         offset=None
     ):
@@ -111,17 +112,20 @@ class TabelaFipe(object):
         where = []
         params = []
         if tiv_cod:
-            where.append('mar.tiv_cod=?')
+            where.append('mar.tiv_cod = ?')
             params.append(tiv_cod)
         if mod_cod:
-            where.append('mod.mod_cod=?')
+            where.append('mod.mod_cod = ?')
             params.append(mod_cod)
         if mar_cod:
-            where.append('mar.mar_cod=?')
+            where.append('mar.mar_cod = ?')
             params.append(mar_cod)
         if mod_codigofipe:
-            where.append('mod.mod_codigofipe=?')
+            where.append('mod.mod_codigofipe = ?')
             params.append(mod_codigofipe)
+        if mod_text:
+            where.append('mod.mod_text like ?')
+            params.append(mod_text)
         if where:
             sql += 'WHERE ' + (' AND '.join(where))
         if limit is not None:

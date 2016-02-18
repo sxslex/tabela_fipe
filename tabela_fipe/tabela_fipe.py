@@ -87,9 +87,12 @@ class TabelaFipe(object):
     def get_modelo(
         self,
         tiv_cod=None,
+        tiv_text=None,
         mod_cod=None,
         mar_cod=None,
+        mar_text=None,
         mod_codigofipe=None,
+        mod_modbase=None,
         mod_text=None,
         limit=None,
         offset=None
@@ -111,21 +114,19 @@ class TabelaFipe(object):
         '''
         where = []
         params = []
-        if tiv_cod:
-            where.append('mar.tiv_cod = ?')
-            params.append(tiv_cod)
-        if mod_cod:
-            where.append('mod.mod_cod = ?')
-            params.append(mod_cod)
-        if mar_cod:
-            where.append('mar.mar_cod = ?')
-            params.append(mar_cod)
-        if mod_codigofipe:
-            where.append('mod.mod_codigofipe = ?')
-            params.append(mod_codigofipe)
-        if mod_text:
-            where.append('mod.mod_text like ?')
-            params.append(mod_text)
+        for param, item_where in [
+            [tiv_cod, 'mar.tiv_cod = ?'],
+            [tiv_text, 'tiv.tiv_text like ?'],
+            [mod_cod, 'mod.mod_cod = ?'],
+            [mar_cod, 'mar.mar_cod = ?'],
+            [mar_text, 'mar.mar_text like ?'],
+            [mod_codigofipe, 'mod.mod_codigofipe = ?'],
+            [mod_modbase, 'mod.mod_modbase like ?'],
+            [mod_text, 'mod.mod_text like ?'],
+        ]:
+            if param:
+                where.append(item_where)
+                params.append(param)
         if where:
             sql += 'WHERE ' + (' AND '.join(where))
         if limit is not None:

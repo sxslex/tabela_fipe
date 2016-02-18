@@ -19,7 +19,6 @@
 #   sx.slex@gmail.com
 # Thanks:
 #   @denisfrm
-#   @cassiobotaro
 #
 import contextlib
 import sqlite3
@@ -86,6 +85,30 @@ class SqliteSingle():
                 self.con.commit()
             return resp.rowcount
 
+    def update(self, table, values, wheres=None, commit=True):
+        lwheres, vwheres = self.make_where(wheres)
+        lcampos = []
+        lvalores = []
+        for campo, valor in values.iteritems():
+            lcampos.append(
+                '%s=?' % (campo)
+            )
+            lvalores.append(valor)
+        sql = 'UPDATE %s SET %s' % (table, ', '.join(lcampos))
+        if lwheres:
+            sql += ' WHERE '
+            sql += ' AND '.join(lwheres)
+        if self.debug:
+            pprint.pprint([sql, lvalores, vwheres])
+        with self.transaction():
+            resp = self.cur.execute(
+                sql,
+                lvalores + vwheres
+            )
+            if commit:
+                self.con.commit()
+            return resp.rowcount
+
     def make_where(self, wheres):
         if not wheres:
             wheres = []
@@ -115,7 +138,16 @@ class SqliteSingle():
             )
             return self.cur.fetchone()[0]
 
-    def select(self, table, wheres=None, fields='*', limit=None, offset=None):
+    def selectd(self, table, wheres=None, fields='*', limit=None, offset=None):
+        return self.select(
+            table=table, wheres=wheres, fields=fields,
+            limit=limit, offset=offset, result_to_dict=True
+        )
+
+    def select(
+        self, table, wheres=None, fields='*', limit=None, offset=None,
+        result_to_dict=False
+    ):
         lwheres, vwheres = self.make_where(wheres)
         if isinstance(fields, (list, tuple)):
             fields = ', '.join(fields)
@@ -132,7 +164,16 @@ class SqliteSingle():
                 sql,
                 vwheres
             )
-            return self.cur.fetchall()
+            resp = self.cur.fetchall()
+            if result_to_dict:
+                resp_new = []
+                for rec in resp:
+                    rec_new = dict()
+                    for idx, campo in enumerate(self.cur.description):
+                        rec_new[campo[0]] = rec[idx]
+                    resp_new.append(rec_new)
+                resp = resp_new
+        return resp
 
     def query(self, sql, params=[]):
         with self.transaction():
@@ -143,35 +184,44 @@ class SqliteSingle():
             return self.cur.fetchall()
 
 
-# if __name__ == '__main__':
-#     if os.path.exists('students.db'):
-#         os.unlink('students.db')
-#     students = SqliteSingle(
-#         'students.db',
-#         '''
-#            create table students (
-#                id_students          integer primary key,
-#                name                 varchar(100),
-#                salary               float,
-#                birthdate            date
-#            );
-#            create table assessments (
-#                id_assessments       integer primary key,
-#                id_students          integer,
-#                grade                float
-#            );
-#         ''',
-#         debug=True
-#     )
-#     print students.insert(
-#         'students',
-#         values=dict(id_students=1, name='slex', salary=3500.10)
-#     )
-#     print students.insert(
-#         'students',
-#         values=dict(id_students=2, name='denis', salary=8000.50)
-#     )
-#     print students.select(
-#         'students',
-#         [dict(f='id_students', v=2)]
-#     )
+if __name__ == '__main__':
+    if os.path.exists('students.db'):
+        os.unlink('students.db')
+    students = SqliteSingle(
+        'students.db',
+        '''
+           create table students (
+                id_students          integer primary key,
+               name                 varchar(100),
+               salary               float,
+               birthdate            date
+           );
+           create table assessments (
+               id_assessments       integer primary key,
+               id_students          integer,
+               grade                float
+           );
+        ''',
+        debug=True
+    )
+    print students.insert(
+        'students',
+        values=dict(id_students=1, name='slex', salary=3500.10)
+    )
+    print students.insert(
+        'students',
+        values=dict(id_students=2, name='denis', salary=8000.50)
+    )
+    print students.select(
+        'students',
+        [dict(f='id_students', v=2)]
+    )
+    print students.update(
+        'students',
+        values=dict(name='slex', salary=8000.50),
+        wheres=[dict(f='id_students', v=1)]
+    )
+    print students.selectd(
+        'students',
+        []
+    )
